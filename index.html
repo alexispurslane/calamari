@@ -20,19 +20,25 @@
   <body>
     <div style="height: 80px; content: ''"></div>
     <div class="row">
-      <div class="col-md-4 col-md-offset-8 fade-in shadow-box 2 out">
+      <div class="col-md-3 col-md-offset-9 3 out hidden">
+        <h1 class="3h1"></h1>
+        <h4 class="text-muted"><small><em class="3h4"></em></small></h4>
+        <br/>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search Events">
+        </div>
+        <div class="list-group events">
+        </div>
+      </div>
+
+      <div class="col-md-3 col-md-offset-8 fade-in 2 out">
         <h1>Today's Events</h1>
         <h4 class="text-muted"><small><em>All new events from today on your favorite repositories.</em></small></h4>
         <br/>
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search Events">
         </div>
-        <div class="list-group">
-          <a class="list-group-item">
-            <span class="badge">1</span>
-            <span class="reponame">matz/streem</span>
-            <i class="glyphicon glyphicon-chevron-right"></i>
-          </a>
+        <div class="list-group repos">
         </div>
       </div>
       <div class="col-md-3 col-md-offset-4 fade-in shadow-box 1">
