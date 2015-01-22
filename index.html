@@ -18,7 +18,10 @@
       <![endif]-->
   </head>
   <body>
-    <div style="height: 80px; content: ''"></div>
+    <div style="height: 80px; content: ''">
+      <button class="btn btn-default btn-sm" id="backbutton"><i class="glyphicon glyphicon-chevron-left"></i>    Back</button>
+      <button class="btn btn-default btn-sm" id="forwardbutton">Forward    <i class="glyphicon glyphicon-chevron-right"></i></button>
+    </div>
     <div class="row">
       <div class="col-md-3 col-md-offset-9 3 out hidden">
         <h1 class="3h1"></h1>
@@ -27,8 +30,8 @@
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search Events">
         </div>
-        <div class="list-group events">
-        </div>
+        <ul class="list-group events">
+        </ul>
       </div>
 
       <div class="col-md-3 col-md-offset-8 fade-in 2 out">
@@ -36,10 +39,11 @@
         <h4 class="text-muted"><small><em>All new events from today on your favorite repositories.</em></small></h4>
         <br/>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search Events">
+          <input type="text" class="form-control" id="s" placeholder="Search Events">
+          <div class="alert alert-info" role="alert" id="help">To run the search, click out of the search box!</div>
         </div>
-        <div class="list-group repos">
-        </div>
+        <ul class="list-group repos">
+        </ul>
       </div>
       <div class="col-md-3 col-md-offset-4 fade-in shadow-box 1">
         <h1>Login</h1>
@@ -48,28 +52,22 @@
         <div class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+              <input type="username" class="form-control" id="inputEmail3" placeholder="Username">
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-success" id="SI">Sign in</button>
+              <button type="submit" class="btn btn-success" id="SI">Go!</button>
             </div>
           </div>
         </div>
       </div>
-
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://rawgit.com/k33g/gh3/master/gh3.js"></script>
+    <script src="https://rawgit.com/showdownjs/showdown/master/compressed/Showdown.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
