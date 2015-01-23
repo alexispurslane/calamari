@@ -21,15 +21,21 @@
     <div style="height: 80px; content: ''">
       <button class="btn btn-default btn-sm" id="backbutton"><i class="glyphicon glyphicon-chevron-left"></i>    Back</button>
       <button class="btn btn-default btn-sm" id="forwardbutton">Forward    <i class="glyphicon glyphicon-chevron-right"></i></button>
+      <div class="btn-group right">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <span class="username"></span>   <span class="glyphicon glyphicon-chevron-down"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#" id="fgme">Forget Me</a></li>
+        </ul>
+      </div>
     </div>
+
     <div class="row">
       <div class="col-md-3 col-md-offset-9 3 out hidden">
         <h1 class="3h1"></h1>
         <h4 class="text-muted"><small><em class="3h4"></em></small></h4>
         <br/>
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search Events">
-        </div>
         <ul class="list-group events">
         </ul>
       </div>
