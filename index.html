@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Today</title>
+    <title>Calamari</title>
 
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,8 +35,8 @@
       </div>
 
       <div class="col-md-3 col-md-offset-8 fade-in 2 out">
-        <h1>Today's Events</h1>
-        <h4 class="text-muted"><small><em>All new events from today on your favorite repositories.</em></small></h4>
+        <h1>Yesterday's Commits</h1>
+        <h4 class="text-muted"><small><em>All new commits from yesterday on your favorite repositories.</em></small></h4>
         <br/>
         <div class="form-group">
           <input type="text" class="form-control" id="s" placeholder="Search Events">
@@ -46,13 +46,13 @@
         </ul>
       </div>
       <div class="col-md-3 col-md-offset-4 fade-in shadow-box 1">
-        <h1>Login</h1>
-        <h4 class="text-muted"><small><em>First, you have to log in to github from here. (Don't worry, we're safe.)</em></small></h4>
+        <h1>What's your username?</h1>
+        <h4 class="text-muted"><small><em>First, you have to tell us your github username, so we know where to get the events from!</em></small></h4>
         <br/>
         <div class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-10">
-              <input type="username" class="form-control" id="inputEmail3" placeholder="Username">
+              <input type="username" class="form-control" id="inputEmail3" placeholder="Username" autofocus>
             </div>
           </div>
           <div class="form-group">
@@ -68,6 +68,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://rawgit.com/showdownjs/showdown/master/compressed/Showdown.min.js"></script>
+    <script src="js/poly.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

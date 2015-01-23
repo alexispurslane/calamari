@@ -53,8 +53,8 @@ function loadRepos () {
         $('.3').attr('class', 'col-md-4 col-md-offset-4 fade-in shadow-box 3');
         var repoName = $(this).children(".reponame").text();
 
-        $('.3h1').text(repoName.split('/')[1] + '\'s Events');
-        $('.3h4').text('All of today\'s events from ' + repoName + '.');
+        $('.3h1').text(repoName.split('/')[1] + '\'s Commits');
+        $('.3h3').text('All of yesterday\'s events from ' + repoName + '.');
         $('.events').html('\
               <div class="progress">\
                 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>\
@@ -63,78 +63,19 @@ function loadRepos () {
         ');
 
 
-        $.ajax('https://api.github.com/repos/' + repoName).then(function (d) {
-          $('.events').html('');
-          $.ajax(d.events_url).then(function (data) {
-            var wantedTypes = [
-              "CommitCommentEvent",
-              "CreateEvent",
-              "DeleteEvent",
-              "ForkEvent",
-              "IssueCommentEvent",
-              "IssuesEvent",
-              "PullRequestEvent",
-              "PullRequestReviewCommentEvent",
-              "PushEvent",
-              "ReleaseEvent",
-              "StatusEvent",
-              "TeamAddEvent"
-            ];
+        var yesterday = new Date();
+        yesterday.setDate(yesterday.getDate()-1);
 
-            var wantedData = data.filter(function (e) {
-              console.log(e);
-              return wantedTypes.indexOf(e.type) != -1 && new Date(e.created_at).toDateString() == new Date().toDateString();
-            }).sort(function (a, b) {
-              return new Date(a.created_at) - new Date(b.created_at);
-            });
-
-            wantedData.forEach(function (e) {
-              if (e.type == "IssueCommentEvent" || e.type == "CommitCommentEvent" || e.type == "PullRequestReviewCommentEvent") {
-                $('.events').append('\
-                           <li class="list-group-item event">\
-                           <span class="label label-info">'+e.type.replace(/Event/, '').replace(/(?!^)([A-Z])/g, ' $1')+'</span>\
-                           <h4><br/>'+e.payload.comment.user.login+':</h4> '+sd.makeHtml(e.payload.comment.body)+'\
-                           </li>\
-                           ');
-              } else if (e.type == "IssuesEvent") {
-                $('.events').append('\
-                           <li class="list-group-item event">\
-                           <span class="label label-danger">New Issue</span>\
-                           <h4><br/>'+e.payload.issue.user.login+':</h4> '+sd.makeHtml(e.payload.issue.title)+'\
-                           </li>\
-                           ');
-              } else if (e.type == "PullRequestEvent") {
-                $('.events').append('\
-                           <li class="list-group-item event">\
-                           <span class="label label-success">Pull Request</span>\
-                           <h4><br/>'+e.payload.pull_request.user.login+':</h4> '+sd.makeHtml(e.payload.pull_request.body)+'\
-                           </li>\
-                           ');
-              } else if (e.type == "ForkEvent") {
-                $('.events').append('\
-                           <li class="list-group-item event">\
-                           <span class="label label-default">New Fork</span>\
-                           <h4><br/>'+e.payload.forkee.owner.login+'</h4> has forked this repository to '+e.payload.forkee.full_name+'\
-                           </li>\
-                           ');
-              } else if (e.type == "PushEvent") {
-                var html = '\
-                           <li class="list-group-item event">\
-                           <span class="label label-primary">Push</span>\
-                           ';
-                var template = '<br/>Commit by <h4>{{authorname}}:</h4> {{message}}';
-                var end = '</li>';
-
-                e.payload.commits.forEach(function (e) {
-                  html += '\n' + template.replace(/\{\{authorname\}\}/, e.author.name).replace(/\{\{message\}\}/, sd.makeHtml(e.message));
-                });
-
-                html += ('\n' + end);
-
-                $('.events').append(html);
-              }
-            });
-          });
+        $.ajax({
+          type: 'GET',
+          data: {
+            until: yesterday.toISOString()
+          },
+          url: 'https://api.github.com/repos/' + repoName + '/commits',
+          success: function (data) {
+            $('.events').html('');
+            console.log(data);
+          }
         });
       });
     });
